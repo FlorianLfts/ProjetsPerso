@@ -2,74 +2,32 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from streamlit_option_menu import option_menu
 
 # Configuration de la page
 st.set_page_config(page_title="Dashboard Streamlit", layout="wide")
 
-# Ajouter le CSS pour personnaliser l'esthétique de la barre latérale
-st.markdown("""
-    <style>
-        /* Personnalisation de la barre latérale */
-        .sidebar .sidebar-content {
-            padding-top: 2rem;
-            background-color: #f1f1f1;
+# Ajouter un logo centré dans la page principale (en haut de l'application)
+st.image("logo.png", width=150)
+
+# Menu latéral avec streamlit-option-menu
+with st.sidebar:
+    # Menu avec des options stylisées
+    selected = option_menu(
+        menu_title="Option-Menu",  # Nom du menu
+        options=["Accueil", "Analyse", "Rapports"],  # Options
+        icons=["house", "bar-chart", "file-earmark-text"],  # Icônes pour chaque option
+        menu_icon="cast",  # Icône du menu principal
+        default_index=0,  # L'option par défaut
+        styles={
+            "container": {"background-color": "#f0f0f5", "padding": "5px"},  # Conteneur
+            "icon": {"color": "#3B5998", "font-size": "18px"},  # Icônes
+            "nav-link": {"font-size": "16px", "text-align": "center", "padding": "10px", "color": "#000000"},
+            "nav-link-selected": {"background-color": "#3B5998", "color": "white"},  # Sélectionner une option
         }
+    )
 
-        .sidebar .sidebar-content .stSidebar > div:first-child {
-            padding-bottom: 1rem;
-        }
-
-        .sidebar img {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .sidebar .sidebar-content .stSelectbox, .sidebar .sidebar-content .stCheckbox {
-            background-color: #ffffff;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-        }
-
-        .sidebar .sidebar-content .stSelectbox > div, .sidebar .sidebar-content .stCheckbox > div {
-            padding: 10px;
-        }
-
-        /* Personnalisation du menu */
-        .stSidebar {
-            background-color: #3B5998;
-            color: white;
-        }
-
-        .stSidebar h1 {
-            text-align: center;
-            color: white;
-        }
-
-        .stSidebar .stButton {
-            background-color: #ffffff;
-            color: #3B5998;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-        
-        .stSidebar .stButton:hover {
-            background-color: #dddddd;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
-# Ajout du logo dans la barre latérale avec un logo centré
-st.sidebar.image("logo.png", width=150)
-
-# Sidebar avec un menu plus esthétique
-st.sidebar.title("Option-Menu")
-
-# Menu de sélection avec des options
-option = st.sidebar.selectbox("Choisir une option", ["Accueil", "Analyse", "Rapports"])
-submenu = st.sidebar.selectbox("Sous-menu", ["Vue 1", "Vue 2", "Vue 3"])
-
-# Cases à cocher
+# Cases à cocher dans la barre latérale
 st.sidebar.subheader("Filtres")
 show_pro = st.sidebar.checkbox("Afficher uniquement Pro = 'A'")
 show_chart1 = st.sidebar.checkbox("Afficher Graphique 1", True)
