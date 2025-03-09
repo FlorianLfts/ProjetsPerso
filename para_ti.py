@@ -8,7 +8,7 @@ from time import sleep
 st.set_page_config(page_title="Pagina web para la mejor del mundo", layout="wide")
 
 # Ajout du logo
-st.image("logo.png", width=150)
+st.sidebar.image("logo.png", width=150)
 
 # Sidebar avec menu latéral
 st.sidebar.title("Menu")
@@ -32,7 +32,7 @@ ideas_citas = [
     "Viaje sorpresa de fin de semana",
     "Cocinar juntos una cena especial",
     "Maratón de películas románticas",
-    "Paseo en globo aerostático"
+    "Visitar museos", "Besarte toda la noche en la cama", "Otros"
 ]
 
 # Gestionnaire de dates
