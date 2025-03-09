@@ -6,11 +6,66 @@ import matplotlib.pyplot as plt
 # Configuration de la page
 st.set_page_config(page_title="Dashboard Streamlit", layout="wide")
 
-# Ajout du logo
-st.image("logo.png", width=150)
+# Ajouter le CSS pour personnaliser l'esthétique de la barre latérale
+st.markdown("""
+    <style>
+        /* Personnalisation de la barre latérale */
+        .sidebar .sidebar-content {
+            padding-top: 2rem;
+            background-color: #f1f1f1;
+        }
 
-# Sidebar avec menu latéral
-st.sidebar.title("Menu")
+        .sidebar .sidebar-content .stSidebar > div:first-child {
+            padding-bottom: 1rem;
+        }
+
+        .sidebar img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .sidebar .sidebar-content .stSelectbox, .sidebar .sidebar-content .stCheckbox {
+            background-color: #ffffff;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar .sidebar-content .stSelectbox > div, .sidebar .sidebar-content .stCheckbox > div {
+            padding: 10px;
+        }
+
+        /* Personnalisation du menu */
+        .stSidebar {
+            background-color: #3B5998;
+            color: white;
+        }
+
+        .stSidebar h1 {
+            text-align: center;
+            color: white;
+        }
+
+        .stSidebar .stButton {
+            background-color: #ffffff;
+            color: #3B5998;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        
+        .stSidebar .stButton:hover {
+            background-color: #dddddd;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# Ajout du logo dans la barre latérale avec un logo centré
+st.sidebar.image("logo.png", width=150)
+
+# Sidebar avec un menu plus esthétique
+st.sidebar.title("Option-Menu")
+
+# Menu de sélection avec des options
 option = st.sidebar.selectbox("Choisir une option", ["Accueil", "Analyse", "Rapports"])
 submenu = st.sidebar.selectbox("Sous-menu", ["Vue 1", "Vue 2", "Vue 3"])
 
@@ -63,8 +118,4 @@ if show_chart3:
     fig, ax = plt.subplots()
     data.boxplot(column=["Valeur1", "Valeur2"], ax=ax)
     st.pyplot(fig)
-
-# Affichage du dataframe pour vérification des filtres
-st.write("Aperçu des données filtrées :")
-st.dataframe(data)
 
