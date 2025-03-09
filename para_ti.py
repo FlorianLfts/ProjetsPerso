@@ -47,20 +47,6 @@ st.markdown("<h1 style='text-align: center;'>Pagina web para la mejor del mundo<
 # Partie texte explicatif
 st.write("Uno de los mejores regalos que fue en mi vida es haberte conocido, y queria crear esta pagina para celebrar lo increible que eres y mejorar tu dia")
 
-query_params = st.experimental_get_query_params()
-
-# Vérifier si des paramètres sont passés dans l'URL et afficher un message
-if "name" in query_params:
-    st.write(f"Bonjour, {query_params['name'][0]}!")
-else:
-    st.write("Bonjour, utilisateur inconnu!")
-
-# Exemple pour récupérer un autre paramètre, comme l'âge
-if "age" in query_params:
-    st.write(f"Vous avez {query_params['age'][0]} ans.")
-else:
-    st.write("Votre âge est inconnu.")
-
 # Barre de progression rouge remplie progressivement
 progress_bar = st.empty()
 progress = 0
