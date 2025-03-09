@@ -19,7 +19,7 @@ submenu = st.sidebar.selectbox("Eres:", ["Guapa", "Increible", "Adorable"])
 # Cases à cocher
 st.sidebar.subheader("Filtros")
 show_pro = st.sidebar.checkbox("Hacer cargar la barra")
-show_chart2 = st.sidebar.checkbox("Para robarme el corazon", True)
+show_chart2 = st.sidebar.checkbox("Para enamorarme cada día un poquito más", True)
 
 # Liste d'idées de dates romantiques en espagnol
 ideas_citas = [
