@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from time import sleep
 
 # Configuration de la page
-st.set_page_config(page_title="Dashboard Streamlit", layout="wide")
+st.set_page_config(page_title="Pagina web para la mejor del mundo", layout="wide")
 
 # Ajout du logo
 st.image("logo.png", width=150)
@@ -14,12 +14,12 @@ st.image("logo.png", width=150)
 st.sidebar.title("Menu")
 option = st.sidebar.selectbox("Cuanto te quiero :", ["Mucho", "Muchisimo", "Demasiado"])
 
-submenu = st.sidebar.selectbox("Sous-menu", ["Vue 1", "Vue 2", "Vue 3"])
+submenu = st.sidebar.selectbox("Eres:", ["Guapa", "Increible", "Adorable"])
 
 # Cases à cocher
-st.sidebar.subheader("Filtres")
-show_pro = st.sidebar.checkbox("Afficher uniquement Pro = 'A'")
-show_chart2 = st.sidebar.checkbox("Afficher Graphique 2", True)
+st.sidebar.subheader("Filtros")
+show_pro = st.sidebar.checkbox("Hacer cargar la barra")
+show_chart2 = st.sidebar.checkbox("Ver tus defectos", True)
 
 # Liste d'idées de dates romantiques en espagnol
 ideas_citas = [
@@ -36,7 +36,7 @@ ideas_citas = [
 ]
 
 # Gestionnaire de dates
-selected_date = st.date_input("Sélectionner une date")
+selected_date = st.date_input("Elige una fecha de cita: ")
 
 # Sélecteur d'idée de date romantique
 selected_cita = st.selectbox("Elige una idea para una cita romántica", ideas_citas)
@@ -45,7 +45,7 @@ selected_cita = st.selectbox("Elige una idea para una cita romántica", ideas_ci
 st.markdown("<h1 style='text-align: center;'>Tableau de Bord Streamlit</h1>", unsafe_allow_html=True)
 
 # Partie texte explicatif
-st.write("Ce tableau de bord interactif permet d'explorer les données et d'afficher différents graphiques en fonction des filtres sélectionnés.")
+st.write("Uno de los mejores regalos que fue en mi vida es haberte conocido, y queria crear esta pagina para celebrar lo increible que eres y mejorar tu dia")
 
 # Barre de progression rouge remplie progressivement
 progress_bar = st.empty()
@@ -64,7 +64,7 @@ y = 13 * np.cos(t) - 5 * np.cos(2 * t) - 2 * np.cos(3 * t) - np.cos(4 * t)
 
 # Affichage des graphes en fonction des cases cochées
 if show_chart2:
-    st.subheader("Graphique 2 - Nuage de points en forme de cœur")
+    st.subheader("Eso es completamente tuyo")
     fig, ax = plt.subplots()
     ax.scatter(x, y, color='red', alpha=0.6)
     ax.set_xticks([])
