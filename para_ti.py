@@ -42,7 +42,7 @@ selected_date = st.date_input("Elige una fecha de cita: ")
 selected_cita = st.selectbox("Elige una idea para una cita romántica", ideas_citas)
 
 # Affichage du titre principal
-st.markdown("<h1 style='text-align: center;'>Tableau de Bord Streamlit</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>Pagina web para la mejor del mundo</h1>", unsafe_allow_html=True)
 
 # Partie texte explicatif
 st.write("Uno de los mejores regalos que fue en mi vida es haberte conocido, y queria crear esta pagina para celebrar lo increible que eres y mejorar tu dia")
