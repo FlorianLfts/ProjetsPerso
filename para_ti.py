@@ -13,17 +13,17 @@ st.image("logo.png", width=150)
 # Sidebar avec menu latéral
 st.sidebar.title("Menu")
 option = st.sidebar.selectbox("Cuanto te quiero :", ["Mucho", "Muchisimo", "Demasiado"])
+
 submenu = st.sidebar.selectbox("Sous-menu", ["Vue 1", "Vue 2", "Vue 3"])
 
 # Cases à cocher
 st.sidebar.subheader("Filtres")
 show_pro = st.sidebar.checkbox("Afficher uniquement Pro = 'A'")
-show_chart1 = st.sidebar.checkbox("Afficher Graphique 1", True)
 show_chart2 = st.sidebar.checkbox("Afficher Graphique 2", True)
 show_chart3 = st.sidebar.checkbox("Afficher Graphique 3", True)
 
-# Liste de citations romantiques en espagnol
-citas_romanticas = [
+# Liste d'idées de dates romantiques en espagnol
+ideas_citas = [
     "Ir al acuario juntos",
     "Spa contigo",
     "Cena a la luz de las velas",
@@ -33,9 +33,8 @@ citas_romanticas = [
     "Viaje sorpresa de fin de semana",
     "Cocinar juntos una cena especial",
     "Maratón de películas románticas",
-    "Visitar museos"
+    "Paseo en globo aerostático"
 ]
-
 
 # Gestionnaire de dates
 selected_date = st.date_input("Sélectionner une date")
@@ -79,3 +78,4 @@ if show_chart3:
     })
     data.boxplot(column=["Valeur1", "Valeur2"], ax=ax)
     st.pyplot(fig)
+
