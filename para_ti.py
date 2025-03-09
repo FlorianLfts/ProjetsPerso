@@ -1,8 +1,8 @@
-
 import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+time import sleep
 
 # Configuration de la page
 st.set_page_config(page_title="Dashboard Streamlit", layout="wide")
@@ -20,7 +20,6 @@ submenu = st.sidebar.selectbox("Sous-menu", ["Vue 1", "Vue 2", "Vue 3"])
 st.sidebar.subheader("Filtres")
 show_pro = st.sidebar.checkbox("Afficher uniquement Pro = 'A'")
 show_chart2 = st.sidebar.checkbox("Afficher Graphique 2", True)
-show_chart3 = st.sidebar.checkbox("Afficher Graphique 3", True)
 
 # Liste d'idées de dates romantiques en espagnol
 ideas_citas = [
@@ -48,8 +47,12 @@ st.markdown("<h1 style='text-align: center;'>Tableau de Bord Streamlit</h1>", un
 # Partie texte explicatif
 st.write("Ce tableau de bord interactif permet d'explorer les données et d'afficher différents graphiques en fonction des filtres sélectionnés.")
 
-# Barre horizontale avec légende
-st.progress(100)
+# Barre de progression rouge remplie progressivement
+progress_bar = st.empty()
+progress = 0
+for i in range(101):
+    progress_bar.progress(i)
+    sleep(0.02)  # Animation fluide
 st.caption("Cuanto te echo de menos")
 
 # Génération d'un nuage de points en forme de cœur
@@ -68,14 +71,3 @@ if show_chart2:
     ax.set_yticks([])
     ax.set_frame_on(False)
     st.pyplot(fig)
-
-if show_chart3:
-    st.subheader("Graphique 3 - Boîte à moustaches")
-    fig, ax = plt.subplots()
-    data = pd.DataFrame({
-        "Valeur1": np.random.randn(100) * 10 + 50,
-        "Valeur2": np.random.randn(100) * 5 + 20
-    })
-    data.boxplot(column=["Valeur1", "Valeur2"], ax=ax)
-    st.pyplot(fig)
-
