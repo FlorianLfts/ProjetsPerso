@@ -1,0 +1,16 @@
+=ARRAYFORMULA(
+  IFERROR(
+    VLOOKUP(
+      UNIQUE(FILTER(ABC!S2:S, ABC!S2:S<>"")),
+      SORT(
+        {ABC!S2:S, ABC!A2:W, 
+         IF(ABC!Q2:Q="Co",3,IF(ABC!Q2:Q="re",2,1)), 
+         DATEVALUE(ABC!V2:V)},
+        1,1, 24,0, 25,0
+      ),
+      SEQUENCE(1,COLUMNS(ABC!A2:W),2),
+      FALSE
+    ),
+    ""
+  )
+)
