@@ -74,3 +74,24 @@ Convertir la colonne V en format date
     )
   }
 )
+
+
+
+
+
+
+
+
+import pandas as pd
+
+
+dataframes = [df1, df2, df3, df4, df5, df6]
+
+
+all_records = []
+for df in dataframes:
+    all_records.extend(df.to_dict(orient='records'))
+
+result = pd.DataFrame.from_records(all_records)
+
+print(result)
