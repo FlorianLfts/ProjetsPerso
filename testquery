@@ -14,3 +14,42 @@
     ""
   )
 )
+
+
+
+
+
+
+=ARRAYFORMULA(
+  {
+    IFERROR(
+      VLOOKUP(
+        UNIQUE(FILTER(ABC!S2:S, ABC!S2:S<>"")),
+        SORT(
+          {ABC!S2:S, ABC!A2:U, 
+           IF(ABC!Q2:Q="Co",3,IF(ABC!Q2:Q="re",2,1)), 
+           ABC!V2:V},  // Garde la date originale au lieu de DATEVALUE
+          1,1, 23,0, 24,0  // Ajuste les indices de colonne
+        ),
+        SEQUENCE(1,COLUMNS(ABC!A2:U),2),
+        FALSE
+      ),
+      ""
+    ),
+    TEXT(
+      IFERROR(
+        VLOOKUP(
+          UNIQUE(FILTER(ABC!S2:S, ABC!S2:S<>"")),
+          SORT(
+            {ABC!S2:S, ABC!V2:V},
+            1,1, 2,0
+          ),
+          2,
+          FALSE
+        ),
+        ""
+      ),
+      "MM/DD/YYYY"  // Formatage explicite des dates
+    )
+  }
+)
