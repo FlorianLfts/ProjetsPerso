@@ -95,3 +95,32 @@ for df in dataframes:
 result = pd.DataFrame.from_records(all_records)
 
 print(result)
+
+
+
+
+
+
+
+
+=ARRAYFORMULA(
+  IFERROR(
+    VLOOKUP(
+      UNIQUE(FILTER(ABC!G2:G, ABC!G2:G<>"")),
+      SORT(
+        {
+          ABC!G2:G, ABC!A2:W,
+          IF(ABC!Q2:Q="co", 3, IF(ABC!Q2:Q="re", 2, 1)), 
+          TO_PURE_NUMBER(ABC!V2:V)
+        },
+        1, TRUE,   // ID
+        COLUMNS(ABC!A2:W)+1, FALSE,  // Priorité (tri décroissant)
+        COLUMNS(ABC!A2:W)+2, FALSE   // Date (tri décroissant)
+      ),
+      SEQUENCE(1, COLUMNS(ABC!A2:W), 2),
+      FALSE
+    ),
+    ""
+  )
+)
+
