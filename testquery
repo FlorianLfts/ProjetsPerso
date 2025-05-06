@@ -99,6 +99,45 @@ print(result)
 
 
 
+function genererSommaire() {
+  const presentation = SlidesApp.getActivePresentation();
+  const slides = presentation.getSlides();
+  const sommaireSlide = slides[0]; // On utilise la première slide comme sommaire
+  sommaireSlide.clear(); // Efface le contenu existant
+
+  sommaireSlide.insertTextBox("Sommaire", 50, 50, 400, 50)
+    .getText()
+    .getTextStyle()
+    .setFontSize(24)
+    .setBold(true);
+
+  let y = 120;
+
+  for (let i = 1; i < slides.length; i++) {
+    const slide = slides[i];
+
+    // Récupère le premier champ de texte comme titre
+    const shapes = slide.getShapes();
+    let titre = "Diapositive " + (i + 1);
+    for (let shape of shapes) {
+      if (shape.getShapeType() === SlidesApp.ShapeType.TEXT_BOX) {
+        const text = shape.getText().asString().trim();
+        if (text.length > 0) {
+          titre = text.split('\n')[0]; // Prend la première ligne
+          break;
+        }
+      }
+    }
+
+    const lienShape = sommaireSlide.insertTextBox(titre, 70, y, 400, 30);
+    lienShape.getText().getTextStyle().setFontSize(14);
+    lienShape.getText().getTextStyle().setForegroundColor('#1155CC');
+    lienShape.getText().getTextStyle().setUnderline(true);
+    lienShape.setLink(SlidesApp.Link.createSlideLink(slide));
+
+    y += 40;
+  }
+}
 
 
 
