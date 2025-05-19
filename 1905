@@ -1,0 +1,52 @@
+import pandas as pd
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+
+# Supposons que ton DataFrame s'appelle df
+# Sépare les colonnes qualitatives et quantitatives
+qualitatives = df.select_dtypes(include='object').columns.tolist()
+quantitatives = df.select_dtypes(include='number').columns.tolist()
+
+# Supprime 'name' des colonnes à traiter
+qualitatives = [col for col in qualitatives if col != 'name']
+quantitatives = [col for col in quantitatives if col != 'name']
+
+# Fonction mode robuste (garde une seule valeur)
+def mode_serie(s):
+    return s.mode().iloc[0] if not s.mode().empty else None
+
+# Groupby et agrégation
+grouped_mode = df.groupby("name")[qualitatives].agg(mode_serie)
+grouped_mean = df.groupby("name")[quantitatives].mean()
+
+# Fusion des deux
+grouped = pd.concat([grouped_mode, grouped_mean], axis=1)
+
+# Encodage des variables qualitatives (one-hot encoding ou ordinal selon besoin)
+grouped_encoded = pd.get_dummies(grouped, drop_first=True)
+
+# Standardisation
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(grouped_encoded)
+
+# ACP
+pca = PCA(n_components=2)  # 2D pour visualisation
+X_pca = pca.fit_transform(X_scaled)
+
+# Résultat dans un DataFrame
+pca_df = pd.DataFrame(X_pca, columns=['PC1', 'PC2'], index=grouped.index)
+
+print(pca.explained_variance_ratio_)  # Variance expliquée par chaque axe
+
+# Pour visualiser (optionnel)
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(8,6))
+plt.scatter(pca_df['PC1'], pca_df['PC2'])
+for i, name in enumerate(pca_df.index):
+    plt.text(pca_df['PC1'][i], pca_df['PC2'][i], str(name), fontsize=9)
+plt.title('Projection PCA')
+plt.xlabel('PC1')
+plt.ylabel('PC2')
+plt.grid()
+plt.show()
